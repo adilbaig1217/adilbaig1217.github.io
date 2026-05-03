@@ -5,301 +5,672 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lucas Giolito to the Padres | Adil Baig</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --navy: #002D62;
+      --sand: #C8943E;
+      --sand-light: #e8b86d;
+      --off-white: #F5F1EB;
+      --dark: #111118;
+      --mid: #3a3a4a;
+      --muted: #7a7a8a;
+      --rule: #ddd8d0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1.65;
-      max-width: 850px;
-      margin: 40px auto;
-      padding: 0 20px;
-      background: #f8f8f8;
-      color: #222;
+      background: var(--off-white);
+      color: var(--dark);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      line-height: 1.75;
     }
 
-    h1, h2, h3 {
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.25;
+    /* ── COVER ── */
+    .cover {
+      position: relative;
+      width: 100%;
+      height: 520px;
+      background: var(--navy);
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: 2.3rem;
-      margin-bottom: 0.3rem;
+    .cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      opacity: 0.55;
+      /* REPLACE THE src BELOW WITH YOUR IMAGE PATH */
+    }
+
+    /* Placeholder shown when no image is provided */
+    .cover-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 12px;
+      color: rgba(255,255,255,0.25);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .cover-placeholder svg {
+      opacity: 0.3;
+    }
+
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 30%,
+        rgba(0,0,0,0.15) 60%,
+        rgba(0, 45, 98, 0.85) 100%
+      );
+    }
+
+    .cover-label {
+      position: absolute;
+      top: 28px;
+      left: 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sand);
+      border: 1px solid var(--sand);
+      padding: 5px 12px;
+      border-radius: 2px;
+    }
+
+    .cover-title-block {
+      position: absolute;
+      bottom: 36px;
+      left: 32px;
+      right: 32px;
+      max-width: 700px;
+    }
+
+    .cover-title-block h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    }
+
+    .cover-title-block h1 span {
+      color: var(--sand-light);
+    }
+
+    /* ── META BAR ── */
+    .meta-bar {
+      background: var(--navy);
+      padding: 14px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      border-bottom: 3px solid var(--sand);
+    }
+
+    .meta-bar .pill {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .meta-bar .pill strong {
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .meta-bar .divider {
+      width: 1px;
+      height: 16px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    .contract-badge {
+      margin-left: auto;
+      background: var(--sand);
+      color: var(--navy);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 2px;
+    }
+
+    /* ── ARTICLE BODY ── */
+    .article-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    /* ── SECTIONS ── */
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sand);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+      opacity: 0.35;
     }
 
     h2 {
-      margin-top: 2.5rem;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.3rem;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 20px;
+      margin-top: 56px;
     }
 
-    .meta {
-      color: #666;
-      font-family: Arial, Helvetica, sans-serif;
-      margin-bottom: 2rem;
+    h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 40px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--rule);
     }
 
-    table {
+    p {
+      font-size: 1.05rem;
+      color: var(--mid);
+      margin-bottom: 22px;
+      font-weight: 300;
+    }
+
+    p:first-of-type {
+      font-size: 1.15rem;
+      color: var(--dark);
+      font-weight: 400;
+    }
+
+    /* ── STATS TABLE ── */
+    .stats-wrap {
+      margin: 32px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .stat-cell {
+      background: #fff;
+      padding: 16px 14px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+
+    .stat-cell.highlight .stat-value {
+      color: var(--sand);
+    }
+
+    /* ── SAVANT IMAGE ── */
+    .savant-img {
+      margin: 28px 0;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+
+    .savant-img img {
       width: 100%;
-      border-collapse: collapse;
-      margin: 1.5rem 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: left;
-    }
-
-    th {
-      background: #eee;
-    }
-
-    .verdict {
-      background: white;
-      border-left: 5px solid #444;
-      padding: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    a {
-      color: #0057b8;
-    }
-
-    .clip {
-      margin: 1.5rem 0;
-    }
-    
-    .clip video {
-      border-radius: 12px;
-      background: #000;
       display: block;
     }
-    
+
+    /* ── CLIPS ── */
+    .clip {
+      margin: 32px 0;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--rule);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .clip video {
+      display: block;
+      width: 100%;
+      background: #000;
+    }
+
     .clip figcaption {
-      font-size: 0.9rem;
-      color: #666;
-      font-family: Arial, Helvetica, sans-serif;
-      margin-top: 0.5rem;
+      padding: 14px 18px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* ── PITCH SECTION HEADER ── */
+    .pitch-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 44px;
+      margin-bottom: 16px;
+    }
+
+    .pitch-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    .pitch-badge.fb  { background: #e8f0ff; color: #2255bb; }
+    .pitch-badge.sl  { background: #fff0e8; color: #bb5522; }
+    .pitch-badge.ch  { background: #e8fff0; color: #227744; }
+
+    .pitch-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--rule);
+      flex: 1;
+      padding-bottom: 8px;
+    }
+
+    /* ── VERDICT / CONCLUSION ── */
+    .conclusion-block {
+      background: var(--navy);
+      border-radius: 8px;
+      padding: 36px 36px 36px 32px;
+      margin: 56px 0 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .conclusion-block::before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: 12rem;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .conclusion-block p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-bottom: 0;
+      position: relative;
+    }
+
+    .conclusion-block p:first-of-type {
+      color: #fff;
+      font-size: 1.15rem;
+    }
+
+    /* ── SOURCES ── */
+    .sources {
+      margin-top: 56px;
+      padding-top: 24px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .sources h2 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0;
+      margin-bottom: 14px;
+    }
+
+    .sources ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .sources ul li {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--mid);
+      background: #fff;
+      border: 1px solid var(--rule);
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .cover { height: 380px; }
+      .cover-title-block { bottom: 24px; left: 20px; right: 20px; }
+      .meta-bar { padding: 12px 20px; }
+      .contract-badge { margin-left: 0; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .article-wrap { padding: 36px 18px 60px; }
     }
   </style>
 </head>
 
 <body>
 
-  <h1>Lucas Giolito Signs with the Padres: A Breakdown</h1>
+  <!-- ══ COVER ══ -->
+  <div class="cover">
+    <img src="../images/2222152302_large_cropped.avif" alt="Lucas Giolito" onerror="this.style.display='none'">
 
-  <p class="meta">
-    <strong>Author:</strong> Adil Baig<br>
-    <strong>Date:</strong> May 3, 2026<br>
-    <strong>Team:</strong> San Diego Padres<br>
-    <strong>Player:</strong> Lucas Giolito<br>
-    <strong>Contract:</strong> 1-year, $3M
-  </p>
+    <!-- Placeholder shown if no image is loaded -->
+    <div class="cover-placeholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+      Replace src in &lt;img&gt; with your image path
+    </div>
 
-  <h2>Quick Summary</h2>
+    <div class="cover-overlay"></div>
+    <div class="cover-label">San Diego Padres · May 2026</div>
+    <div class="cover-title-block">
+      <h1>Lucas Giolito<br>Signs with the <span>Padres</span></h1>
+    </div>
+  </div>
 
-  <p>
-    Lucas Giolito has finally been signed, and it took until the MLB season already started. As low as I am on Giolito I certainly found it
-    surprising he went unsigned this offseason. Let's break down what exactly the Padres are getting in the veteran righty.
-  </p>
+  <!-- ══ META BAR ══ -->
+  <div class="meta-bar">
+    <div class="pill">By <strong>Adil Baig</strong></div>
+    <div class="divider"></div>
+    <div class="pill"><strong>May 3, 2026</strong></div>
+    <div class="divider"></div>
+    <div class="pill">Player: <strong>Lucas Giolito</strong></div>
+    <div class="contract-badge">1-Year · $3M</div>
+  </div>
 
-  <h2>Why the Padres Made This Move</h2>
+  <!-- ══ ARTICLE ══ -->
+  <div class="article-wrap">
 
-  <p>
-    The Padres rotation isn't in the best shape right now. As of the writing of this article, they rank 22nd in SP ERA and 18th in SP WHIP.
-    Michael King and Randy Vasquez have been reliable this season, but the back-end of the rotation has struggled with Walker Buehler and
-    German Marquez both having ERAs above 5 (shocking, I know). The main reason for this move however is the lack of pitching depth in the
-    organization right now. Griffin Canning, Joe Musgrove and Yu Darvish have all been on the shelf to start the season, and Nick Pivetta
-    joined them on the injured list about a month ago. They've been trotting out knuckleballer Matt Waldron to replace Pivetta in the
-    rotation, and he currently has a 9.88 ERA. The other option would be JP Sears, who had a 5.47 ERA in 24.2 IP after being acquired
-    by the team last deadline. In short, it shouldn't be hard for Giolito to be an upgrade over those guys, and I presume he's here to 
-    take over for Waldron once he's ready.
-  </p>
+    <!-- Quick Summary -->
+    <div class="section-label">Quick Summary</div>
+    <p>
+      Lucas Giolito has finally been signed, and it took until the MLB season already started. As low as I am on Giolito I certainly found it
+      surprising he went unsigned this offseason. Let's break down what exactly the Padres are getting in the veteran righty.
+    </p>
 
-  <h2>The Profile</h2>
+    <!-- Why the Move -->
+    <div class="section-label">Context</div>
+    <h2>Why the Padres Made This Move</h2>
+    <p>
+      The Padres rotation isn't in the best shape right now. As of the writing of this article, they rank 22nd in SP ERA and 18th in SP WHIP.
+      Michael King and Randy Vasquez have been reliable this season, but the back-end of the rotation has struggled with Walker Buehler and
+      German Marquez both having ERAs above 5 (shocking, I know). The main reason for this move however is the lack of pitching depth in the
+      organization right now. Griffin Canning, Joe Musgrove and Yu Darvish have all been on the shelf to start the season, and Nick Pivetta
+      joined them on the injured list about a month ago. They've been trotting out knuckleballer Matt Waldron to replace Pivetta in the
+      rotation, and he currently has a 9.88 ERA. The other option would be JP Sears, who had a 5.47 ERA in 24.2 IP after being acquired
+      by the team last deadline. In short, it shouldn't be hard for Giolito to be an upgrade over those guys, and I presume he's here to 
+      take over for Waldron once he's ready.
+    </p>
 
-  <h3>2025 Stats</h3>
+    <!-- The Profile -->
+    <div class="section-label">Player Profile</div>
+    <h2>The Profile</h2>
 
-  <table>
-    <tr>
-      <th>Stat</th>
-      <th>Value</th>
-    </tr>
-    <tr>
-      <td>IP</td>
-      <td>145.0</td>
-    </tr>
-    <tr>
-      <td>ERA</td>
-      <td>3.41</td>
-    </tr>
-    <tr>
-      <td>FIP</td>
-      <td>4.17</td>
-    </tr>
-    <tr>
-      <td>xERA</td>
-      <td>5.06</td>
-    </tr>
-    <tr>
-    <tr>
-      <td>xFIP</td>
-      <td>4.59</td>
-    </tr>
-      <td>K%</td>
-      <td>19.7</td>
-    </tr>
-    <tr>
-      <td>BB%</td>
-      <td>9.1</td>
-    </tr>
-    <tr>
-      <td>fWAR</td>
-      <td>2.0</td>
-    </tr>
-  </table>
+    <h3>2025 Stats</h3>
+    <div class="stats-wrap">
+      <div class="stats-grid">
+        <div class="stat-cell">
+          <div class="stat-label">IP</div>
+          <div class="stat-value">145.0</div>
+        </div>
+        <div class="stat-cell highlight">
+          <div class="stat-label">ERA</div>
+          <div class="stat-value">3.41</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">FIP</div>
+          <div class="stat-value">4.17</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">xERA</div>
+          <div class="stat-value">5.06</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">xFIP</div>
+          <div class="stat-value">4.59</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">K%</div>
+          <div class="stat-value">19.7</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">BB%</div>
+          <div class="stat-value">9.1</div>
+        </div>
+        <div class="stat-cell">
+          <div class="stat-label">fWAR</div>
+          <div class="stat-value">2.0</div>
+        </div>
+      </div>
+    </div>
 
-  <img src="../images//Opera Snapshot_2026-05-03_004558_baseballsavant.mlb.com.png" alt="">
+    <div class="savant-img">
+      <img src="../images//Opera Snapshot_2026-05-03_004558_baseballsavant.mlb.com.png" alt="Baseball Savant profile">
+    </div>
 
-  <p>
-    Giolito had a 3.41 ERA in 26 starts last season, that means he's prime Giolito again right? Well not quite. Giolito is yet another
-    example of why ERA can be very misleading. There's not exactly any red on his savant page, and that's because his 3.41 ERA came with
-    an awful 5.06 xERA and a mediocre 4.17 FIP. He carried a below average strikeout rate and below average walk rate, not an ideal
-    combo and a far cry from what we saw from him in his prime. Long story short, he was pretty fortunate to not allow as many runs as
-    he did. His BABIP, HR/FB% and LOB% were all above average, not something you can expect to repeat for another season.
-  </p>
+    <p>
+      Giolito had a 3.41 ERA in 26 starts last season, that means he's prime Giolito again right? Well not quite. Giolito is yet another
+      example of why ERA can be very misleading. There's not exactly any red on his savant page, and that's because his 3.41 ERA came with
+      an awful 5.06 xERA and a mediocre 4.17 FIP. He carried a below average strikeout rate and below average walk rate, not an ideal
+      combo and a far cry from what we saw from him in his prime. Long story short, he was pretty fortunate to not allow as many runs as
+      he did. His BABIP, HR/FB% and LOB% were all above average, not something you can expect to repeat for another season.
+    </p>
 
-  <p>
-    All that being said, there's still a lot to like with Giolito. He consistently pitched deep into games for the Red Sox last season,
-    volume the Padres could really use right now. As mentioned earlier, a mediocre starter with volume would be a sizeable upgrade to what
-    the Padres are putting out there right now. Beyond that, I also see some potential upside in what he showed us last season. Giolito
-    is a 3-pitch guy: 4-seam, changeup and slider. Despite the success, he had trouble commanding even 2 of those three pitches, but the
-    rare time he did, we saw glimpses of high-end production. If he can manage to command his arsenal better, we could see more of a 23%
-    strikeout rate with a slightly lower walk rate, which would be pretty good. There's a lot working against him, which we'll get to,
-    but at least the upside is there.
-  </p>
+    <p>
+      All that being said, there's still a lot to like with Giolito. He consistently pitched deep into games for the Red Sox last season,
+      volume the Padres could really use right now. As mentioned earlier, a mediocre starter with volume would be a sizeable upgrade to what
+      the Padres are putting out there right now. Beyond that, I also see some potential upside in what he showed us last season. Giolito
+      is a 3-pitch guy: 4-seam, changeup and slider. Despite the success, he had trouble commanding even 2 of those three pitches, but the
+      rare time he did, we saw glimpses of high-end production. If he can manage to command his arsenal better, we could see more of a 23%
+      strikeout rate with a slightly lower walk rate, which would be pretty good. There's a lot working against him, which we'll get to,
+      but at least the upside is there.
+    </p>
 
-  <p>
-    Now the main reason (I'm assuming) he went unsigned this long is unfortunately health related. He returned in 2025 after essentially
-    2 years off due to TJS, and by the end of the season he was unable to pitch due to an elbow issue. There was no structural damage,
-    but I imagine teams are concerned about whether he can consistently hold up over a full season. It wasn't just the command issues that
-    made him frustratingly inconsistent, he had starts where his fastball velo was a tick down or his extension wasn't what it normally is.
-    Needless to say, the situation playing out the way it did isn't gonna inspire much confidence in me. Combine that with the fact that
-    he is getting a late start on the season and all the issues he had to begin with, I have no idea what we're gonna get.
-  </p>
+    <p>
+      Now the main reason (I'm assuming) he went unsigned this long is unfortunately health related. He returned in 2025 after essentially
+      2 years off due to TJS, and by the end of the season he was unable to pitch due to an elbow issue. There was no structural damage,
+      but I imagine teams are concerned about whether he can consistently hold up over a full season. It wasn't just the command issues that
+      made him frustratingly inconsistent, he had starts where his fastball velo was a tick down or his extension wasn't what it normally is.
+      Needless to say, the situation playing out the way it did isn't gonna inspire much confidence in me. Combine that with the fact that
+      he is getting a late start on the season and all the issues he had to begin with, I have no idea what we're gonna get.
+    </p>
 
-  <h2>Pitch Mix</h2>
+    <!-- Pitch Mix -->
+    <div class="section-label">Arsenal Breakdown</div>
+    <h2>Pitch Mix</h2>
 
-  <h3>Fastball</h3>
+    <!-- Fastball -->
+    <div class="pitch-header">
+      <span class="pitch-badge fb">4-Seam · 48%</span>
+      <span class="pitch-name">Fastball</span>
+    </div>
 
-  <p>
-    Giolito's 4-seam fastball was inconsistent (sensing a theme?) but there was starts where it was absolutely cooking, where he was
-    able to average 94 mph with plus extension and vertical break. He leaned on it a lot, throwing it 48% of the time and featuring it
-    heavily against both LHB and RHB. On the season his fastball averaged 93.3 mph, not amazing, but that did come with overall plus
-    extension and an elite 17.2 inches of vertical break. That led to not many whiffs but plenty of called strikes and ground balls, as
-    he was able to often get his fastball up and in on batters. It was a pitch that got the job done for him, but the question is whether
-    he can maintain the higher end velo and extension for more than just a few games. The results were pretty encouraging when he did.
-  </p>
+    <p>
+      Giolito's 4-seam fastball was inconsistent (sensing a theme?) but there was starts where it was absolutely cooking, where he was
+      able to average 94 mph with plus extension and vertical break. He leaned on it a lot, throwing it 48% of the time and featuring it
+      heavily against both LHB and RHB. On the season his fastball averaged 93.3 mph, not amazing, but that did come with overall plus
+      extension and an elite 17.2 inches of vertical break. That led to not many whiffs but plenty of called strikes and ground balls, as
+      he was able to often get his fastball up and in on batters. It was a pitch that got the job done for him, but the question is whether
+      he can maintain the higher end velo and extension for more than just a few games. The results were pretty encouraging when he did.
+    </p>
 
-<figure class="clip">
-  <video controls width="100%">
-    <source src="https://sporty-clips.mlb.com/YVkyWkRfWGw0TUFRPT1fVjFSWEFBSlNBbEFBREZFR0FnQUhVZ1lGQUZoVVZWTUFBMUlCVXdWUkFGVmRCZ05U.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</figure>
+    <figure class="clip">
+      <video controls width="100%">
+        <source src="https://sporty-clips.mlb.com/YVkyWkRfWGw0TUFRPT1fVjFSWEFBSlNBbEFBREZFR0FnQUhVZ1lGQUZoVVZWTUFBMUlCVXdWUkFGVmRCZ05U.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>In this start against the Rockies, Giolito averaged 94 mph on the heater and managed to hit 96 on this nasty pitch up in the zone to Jordan Beck.</figcaption>
+    </figure>
 
-<p>
-  In this start against the Rockies, Giolito averaged 94 mph on the heater and managed to hit 96 on this nasty pitch up in the zone to
-  Jordan Beck.
-</p>
+    <!-- Slider -->
+    <div class="pitch-header">
+      <span class="pitch-badge sl">Slider · 26%</span>
+      <span class="pitch-name">Slider</span>
+    </div>
 
-  <h3>Slider</h3>
+    <p>
+      Giolito featured a new slider as one of his two secondaries, throwing it 26% of the time and primarily to RHB. The pitch had its 
+      moments, but overall it graded very poorly. He didn't get much break on the slider, and the spin rate was especially terrible. A sub
+      60% strike rate over a full season is not what you want to see, but the pitch did have a 32.1 whiff% which is slightly above average.
+    </p>
 
-  <p>
-    Giolito featured a new slider as one of his two secondaries, throwing it 26% of the time and primarily to RHB. The pitch had its 
-    moments, but overall it graded very poorly. He didn't get much break on the slider, and the spin rate was especially terrible. A sub
-    60% strike rate over a full season is not what you want to see, but the pitch did have a 32.1 whiff% which is slightly above average.
-  </p>
+    <figure class="clip">
+      <video controls width="100%">
+        <source src="https://sporty-clips.mlb.com/NHlNOU5fV0ZRVkV3dEdEUT09X0JBSlhVQUZYVmxRQUNBWlhWUUFIVXdGZUFGa05Wd1VBQlFCV1VRSUJBQUFBQlZOUg==.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>When he located it well, like here where he throws it down and away to Mauricio Dubon, he generated a good amount of swings and misses.</figcaption>
+    </figure>
 
-  <figure class="clip">
-  <video controls width="100%">
-    <source src="https://sporty-clips.mlb.com/NHlNOU5fV0ZRVkV3dEdEUT09X0JBSlhVQUZYVmxRQUNBWlhWUUFIVXdGZUFGa05Wd1VBQlFCV1VRSUJBQUFBQlZOUg==.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</figure>
+    <figure class="clip">
+      <video controls width="100%">
+        <source src="https://sporty-clips.mlb.com/akQ5UlhfV0ZRVkV3dEdEUT09X0J3aFFVZ0VEVVFFQURGUUxVQUFIQkZNQ0FGZ0ZWbEVBQ2wwTlVsQldCUVFIQ1FGUQ==.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>A lot of the time though, the pitch execution was severly lacking, and here Nick Castellanos was able to take full advantage.</figcaption>
+    </figure>
 
-  <p>
-  When he located it well, like here where he throws it down and away to Mauricio Dubon, he generated a good amount of swings and misses.
-</p>
+    <!-- Changeup -->
+    <div class="pitch-header">
+      <span class="pitch-badge ch">Changeup · 23%</span>
+      <span class="pitch-name">Changeup</span>
+    </div>
 
-  <figure class="clip">
-  <video controls width="100%">
-    <source src="https://sporty-clips.mlb.com/akQ5UlhfV0ZRVkV3dEdEUT09X0J3aFFVZ0VEVVFFQURGUUxVQUFIQkZNQ0FGZ0ZWbEVBQ2wwTlVsQldCUVFIQ1FGUQ==.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</figure>
+    <p>
+      Giolito threw his changeup 23% of the time, using it more often than the slider against left-handed batters. It averages just 81.7 
+      mph with an elite 11.1 inches of vertical break, making it a pretty tough pitch to hit. He wasn't afraid to attack the strike zone
+      with his changeup, leading to a lot of called strikes and foul balls, but he got a solid amount of whiffs as well. Batters had a 
+      77.6% zone-contact rate against the pitch, which is well below average. When batters did put the ball in play, they had a miniscule
+      .198 BABIP and .218 xBABIP, as Giolito was able to get weak contact more often than not. The downside is batters also had no trouble
+      putting the ball in the air against Giolito's changeup, especially when he didn't have good feel for the pitch. The low batting
+      average came with a .411 slugging and 11.2 barrel%.
+    </p>
 
-  <p>
-  A lot of the time though, the pitch execution was severly lacking, and here Nick Castellanos was able to take full advantage.
-</p>
+    <figure class="clip">
+      <video controls width="100%">
+        <source src="https://sporty-clips.mlb.com/Qndvb3JfWGw0TUFRPT1fVlZSVEFGd0NWd1VBQ2dRQ0FBQUhVQVpTQUFBRlYxSUFBUUVOVTFjRkJGQUJVVlJX.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>3-2 count on Colton Cowser, and Giolito finishes him off with a perfectly executed changeup that just catches the top of the zone. Can't blame Cowser for checking his swing on that one. This start against the Orioles was easily the best changeup command he had all year, and the results were beautiful: 8 scoreless innings with one walk and 8 Ks.</figcaption>
+    </figure>
 
-    <h3>Changeup</h3>
+    <figure class="clip">
+      <video controls width="100%">
+        <source src="https://sporty-clips.mlb.com/WEQyWk5fWGw0TUFRPT1fVTFWWEJRVU5BRmNBV2xwV1ZnQUhCMVFEQUFBTUFnSUFDd0VCVkFZQUFRTUhDRllE.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>But this is why Giolito just frustrates the hell out of me. You never know when he'll actually be able to command his changeup, and the approach is not quite the same when he can't.</figcaption>
+    </figure>
 
-  <p>
-    Giolito threw his changeup 23% of the time, using it more often than the slider against left-handed batters. It averages just 81.7 
-    mph with an elite 11.1 inches of vertical break, making it a pretty tough pitch to hit. He wasn't afraid to attack the strike zone
-    with his changeup, leading to a lot of called strikes and foul balls, but he got a solid amount of whiffs as well. Batters had a 
-    77.6% zone-contact rate against the pitch, which is well below average. When batters did put the ball in play, they had a miniscule
-    .198 BABIP and .218 xBABIP, as Giolito was able to get weak contact more often than not. The downside is batters also had no trouble
-    putting the ball in the air against Giolito's changeup, especially when he didn't have good feel for the pitch. The low batting
-    average came with a .411 slugging and 11.2 barrel%.
-  </p>
+    <!-- Conclusion -->
+    <div class="section-label">Verdict</div>
+    <h2>Conclusion</h2>
+    <div class="conclusion-block">
+      <p>
+        There was a lot going on with Giolito in 2025 to say the least. To put it simply, there's a lot to like and a lot to dislike. There's
+        a reliable starter in there somwehere, but the inconsistent command and injury question marks probably overweigh any upside. It's 
+        obviously worth taking a chance on though if you're the Padres. After all, the bar is pretty low right now.
+      </p>
+    </div>
 
-  <figure class="clip">
-  <video controls width="100%">
-    <source src="https://sporty-clips.mlb.com/Qndvb3JfWGw0TUFRPT1fVlZSVEFGd0NWd1VBQ2dRQ0FBQUhVQVpTQUFBRlYxSUFBUUVOVTFjRkJGQUJVVlJX.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</figure>
+    <!-- Sources -->
+    <div class="sources">
+      <h2>Sources / Data Used</h2>
+      <ul>
+        <li>Baseball Savant</li>
+        <li>FanGraphs</li>
+        <li>Baseball Reference</li>
+        <li>MLB Film Room</li>
+        <li>Pitcher List</li>
+        <li>TJ Stats</li>
+      </ul>
+    </div>
 
-  <p>
-  3-2 count on Colton Cowser, and Giolito finishes him off with a perfectly executed changeup that just catches the top of the zone.
-  Can't blame Cowser for checking his swing on that one. This start against the Orioles was easily the best changeup command he had all 
-  year, and the results were beautiful: 8 scoreless innings with one walk and 8 Ks.
-</p>
-
-  <figure class="clip">
-  <video controls width="100%">
-    <source src="https://sporty-clips.mlb.com/WEQyWk5fWGw0TUFRPT1fVTFWWEJRVU5BRmNBV2xwV1ZnQUhCMVFEQUFBTUFnSUFDd0VCVkFZQUFRTUhDRllE.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</figure>
-
-  <p>
-  But this is why Giolito just frustrates the hell out of me. You never know when he'll actually be able to command his changeup, and
-  the approach is not quite the same when he can't.
-</p>
-
-  <h2>Conclusion</h2>
-
-  <p>
-  There was a lot going on with Giolito in 2025 to say the least. To put it simply, there's a lot to like and a lot to dislike. There's
-  a reliable starter in there somwehere, but the inconsistent command and injury question marks probably overweigh any upside. It's 
-  obviously worth taking a chance on though if you're the Padres. After all, the bar is pretty low right now.
-</p>
-
-
-  <h2>Sources / Data Used</h2>
-
-  <ul>
-    <li>Baseball Savant</li>
-    <li>FanGraphs</li>
-    <li>Baseball Reference</li>
-    <li>MLB Film Room</li>
-    <li>Pitcher List</li>
-    <li>TJ Stats</li>
-  </ul>
+  </div><!-- /article-wrap -->
 
 </body>
 </html>
